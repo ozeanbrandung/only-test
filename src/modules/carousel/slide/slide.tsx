@@ -13,7 +13,7 @@ export const Slide: React.FC<IProps> = ({ items, className }) => {
     <div className={clsx(styles.slide, className)}>
       {items.map(({ date, text }) => (
         <article key={date} className={styles.article}>
-          <h2 className={styles.date}>{date}</h2>
+          <h3 className={styles.date}>{date}</h3>
           <p className={styles.text}>{text}</p>
         </article>
       ))}

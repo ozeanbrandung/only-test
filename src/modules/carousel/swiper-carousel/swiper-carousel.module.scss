@@ -54,3 +54,17 @@
 .bulletActive {
     opacity: 1;
 }
+
+.info {
+    position: absolute;
+    top: -10px;
+    transform: translateY(-100%);
+    font-family: "PT Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18.12px;
+
+    /* text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none; */
+}

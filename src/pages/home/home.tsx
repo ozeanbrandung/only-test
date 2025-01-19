@@ -8,7 +8,7 @@ export const Home: React.FC = () => {
   return (
     <Layout>
       <UIHeader1 className={clsx(styles.h1)}>Исторические даты</UIHeader1>
-      <Carousel />
+      <Carousel className={styles.carousel} />
     </Layout>
   );
 };

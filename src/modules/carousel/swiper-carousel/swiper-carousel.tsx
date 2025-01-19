@@ -14,15 +14,26 @@ interface IProps {
     to: number;
     items: { date: number; text: string }[];
   }[];
+  className?: string;
 }
 
-export const SwiperCarousel: React.FC<IProps> = ({ data }) => {
+function getFormattedInfo(activeIndex: number, total: number) {
+  const first = (activeIndex + 1).toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  });
+  const second = total.toLocaleString("en-US", { minimumIntegerDigits: 2, useGrouping: false });
+  return `${first}/${second}`;
+}
+
+export const SwiperCarousel: React.FC<IProps> = ({ data, className }) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <>
       <Swiper
+        className={className}
         onSwiper={(swiper: any) => {
           swiperRef.current = swiper;
           setActiveIndex(swiper.activeIndex);
@@ -52,6 +63,8 @@ export const SwiperCarousel: React.FC<IProps> = ({ data }) => {
       </Swiper>
 
       <nav className={styles.buttons}>
+        <div className={styles.info}>{getFormattedInfo(activeIndex, data.length)}</div>
+
         <button className={styles.prevBtn} onClick={() => swiperRef.current?.slidePrev()}>
           <Arrow />
         </button>
