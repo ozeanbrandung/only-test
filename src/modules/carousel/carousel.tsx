@@ -18,13 +18,15 @@ export const Carousel: React.FC = () => {
 
   //console.log(from, to)
   return (
-    <section>
+    <>
       <Numbers from={from} to={to} className={styles.numbers} />
       <h2 className={styles.h2}>Литература</h2>
       <hr className={styles.line} />
-      <SwiperCarousel data={data} />
+      <>
+        <SwiperCarousel data={data} />
+      </>
 
       {/* <button type="button" onClick={handleChange}>change</button> */}
-    </section>
+    </>
   );
 };

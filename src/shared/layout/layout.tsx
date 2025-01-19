@@ -6,6 +6,5 @@ export const Layout: React.FC<{ children: React.ReactNode; className?: string }>
   children,
   className,
 }) => {
-  //console.log(styles)
   return <main className={clsx(styles.layout, className)}>{children}</main>;
 };

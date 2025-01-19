@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import { Slide } from "../slide/slide";
 //import { Navigation, Pagination } from "swiper/modules";
 import styles from "./swiper-carousel.module.scss";
-import { Arrow } from "./arrow";
+import { Arrow } from "../../../shared";
 import clsx from "clsx";
 
 interface IProps {
@@ -29,38 +29,68 @@ function getFormattedInfo(activeIndex: number, total: number) {
 export const SwiperCarousel: React.FC<IProps> = ({ data, className }) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const slideRef = useRef<HTMLDivElement[] | null>([]);
+  const scrollButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  function handleScrollSlide() {
+    //console.log(slideRef.current?)
+    if (slideRef.current?.[activeIndex]) {
+      //console.log(slideRef.current)
+      slideRef.current[activeIndex].scrollBy({ left: 200, behavior: "smooth" });
+    }
+  }
+
+  useEffect(() => {
+    if (slideRef.current?.[activeIndex] && scrollButtonRef.current) {
+      if (slideRef.current[activeIndex].scrollWidth > slideRef.current[activeIndex].clientWidth) {
+        scrollButtonRef.current.classList.remove(styles.hidden);
+      } else {
+        scrollButtonRef.current.classList.add(styles.hidden);
+      }
+    }
+  }, [activeIndex]);
 
   return (
     <>
-      <Swiper
-        className={className}
-        onSwiper={(swiper: any) => {
-          swiperRef.current = swiper;
-          setActiveIndex(swiper.activeIndex);
-        }}
-        allowTouchMove={false}
-        //modules={[Navigation, Pagination]}
-        onSlideChange={(swiper) => {
-          setActiveIndex(swiper.activeIndex);
-        }}
-        // breakpoints={{
-        //   640: {
-        //     slidesPerView: 1
-        //   },
-        //   1000: {
-        //     slidesPerView: 2
-        //   },
-        //   1300: {
-        //     slidesPerView: 4
-        //   }
-        // }}
-      >
-        {data.map((dataItem) => (
-          <SwiperSlide key={dataItem.title}>
-            <Slide items={dataItem.items} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className={styles.carouselWrapper}>
+        <Swiper
+          className={className}
+          onSwiper={(swiper: any) => {
+            swiperRef.current = swiper;
+            setActiveIndex(swiper.activeIndex);
+          }}
+          allowTouchMove={false}
+          //modules={[Navigation, Pagination]}
+          onSlideChange={(swiper) => {
+            setActiveIndex(swiper.activeIndex);
+          }}
+          // breakpoints={{
+          //   640: {
+          //     slidesPerView: 1
+          //   },
+          //   1000: {
+          //     slidesPerView: 2
+          //   },
+          //   1300: {
+          //     slidesPerView: 4
+          //   }
+          // }}
+        >
+          {data.map((dataItem) => (
+            <SwiperSlide key={dataItem.title}>
+              <Slide items={dataItem.items} slideRef={slideRef} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <button
+          className={clsx(styles.scrollButton, styles.hidden)}
+          onClick={handleScrollSlide}
+          ref={scrollButtonRef}
+        >
+          <Arrow className={styles.arrowRight} />
+        </button>
+      </div>
 
       <nav className={styles.buttons}>
         <div className={styles.info}>{getFormattedInfo(activeIndex, data.length)}</div>
