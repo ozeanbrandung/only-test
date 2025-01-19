@@ -12,7 +12,8 @@
       "@types/react-dom",
       "node_modules/@types",
       "node_modules/@types/*",
-      "./global.d.ts"
+      "./global.d.ts",
+      "node"
     ],
     "resolveJsonModule": true,
     "isolatedModules": true,

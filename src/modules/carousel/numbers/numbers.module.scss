@@ -1,0 +1,22 @@
+.numbers {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+font-size: 56px;
+font-weight: 700;
+line-height: 72.46px;
+letter-spacing: -0.02em;
+text-align: left;
+
+/* text-underline-position: from-font;
+text-decoration-skip-ink: none; */
+
+}
+
+.from {
+    color: #3877EE;
+}
+
+.to {
+    color: pink
+}
