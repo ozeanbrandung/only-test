@@ -29,3 +29,28 @@
 .arrowRight {
     transform: rotate(180deg);
 }
+
+.pagination {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bullet {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    flex: 0 0 6px;
+    border-radius: 50%;
+    background-color: #42567A;
+    opacity: 0.4;
+}
+
+.bulletActive {
+    opacity: 1;
+}
