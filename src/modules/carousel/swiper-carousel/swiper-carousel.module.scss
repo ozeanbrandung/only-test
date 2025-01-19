@@ -1,0 +1,31 @@
+.swiperCarousel {
+    padding: 20px 0;
+}
+
+.slide {
+    width: 100vw;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 13px;
+    display: flex;
+    gap: 8px;
+}
+
+.prevBtn,
+.nextBtn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: inherit;
+    border: 1px solid #42567A80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.arrowRight {
+    transform: rotate(180deg);
+}

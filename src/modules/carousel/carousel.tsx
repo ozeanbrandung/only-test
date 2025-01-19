@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Numbers } from "./numbers/numbers";
 import styles from "./carousel.module.scss";
+import { SwiperCarousel } from "./swiper-carousel/swiper-carousel";
+import data from "@/app/data.json";
 
 export const Carousel: React.FC = () => {
   const [{ from, to }, setState] = useState({ from: 1000, to: 2000 });
@@ -17,7 +19,8 @@ export const Carousel: React.FC = () => {
   //console.log(from, to)
   return (
     <section>
-      <Numbers from={from} to={to} className={styles.numbers}/>
+      <Numbers from={from} to={to} className={styles.numbers} />
+      <SwiperCarousel data={data} />
       {/* <button type="button" onClick={handleChange}>change</button> */}
     </section>
   );
