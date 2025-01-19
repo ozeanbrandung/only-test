@@ -48,4 +48,22 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 /* reset end */
+
+html, body {
+	height: 100vh;
+	width: 100vw;
+	font-family: 'PT Sans', sans-serif;
+	position: relative;
+	color: #42567A;
+  }
+
+#root {
+	width: 100%;
+	height: 100%;
+}
+  
+* {
+	box-sizing: border-box;
+ }

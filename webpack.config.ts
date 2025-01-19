@@ -16,11 +16,13 @@ const plugins = [
     filename: "[name].[contenthash].css",
   }),
   new CopyWebpackPlugin({
-    patterns: [{ 
-      from: path.resolve(__dirname, "public", "images"), 
-      to: path.resolve(__dirname, "build", "images"), 
-      noErrorOnMissing: true 
-    }],
+    patterns: [
+      {
+        from: path.resolve(__dirname, "public", "images"),
+        to: path.resolve(__dirname, "build", "images"),
+        noErrorOnMissing: true,
+      },
+    ],
   }),
   new HtmlWebpackPlugin({
     template: path.resolve(__dirname, "public", "index.html"),
@@ -59,7 +61,15 @@ const config: Configuration = {
         test: /\.s(a|c)ss$/,
         use: [
           "style-loader",
-          "css-loader",
+          {
+            loader: "css-loader",
+            options: {
+              esModule: false,
+              modules: {
+                namedExport: false,
+              },
+            },
+          },
           {
             loader: "postcss-loader",
             options: {
