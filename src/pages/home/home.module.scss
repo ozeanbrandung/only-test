@@ -14,7 +14,7 @@
     padding-bottom: 20px;
 
     @media (width >= 1440px) {
-        padding: 170px 80px 104px;
+        padding: min(15.74vh, 170px) 80px min(9.63vh, 104px);
         border-right: 1px solid #42567A;
         border-left: 1px solid #42567A;
         display: flex;
@@ -33,7 +33,9 @@
         top: 10px;
         transform: translateX(-50%);
         width: 6px;
-        height: 120px;
+
+        /* height: 120px; */
         background: linear-gradient(180deg, #3877EE 0%, #EF5DA8 100%);
+        height: min(11.11vh, 120px);
     }
 }

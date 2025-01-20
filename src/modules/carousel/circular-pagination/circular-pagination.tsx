@@ -259,16 +259,16 @@ export const CircularPagination: React.FC<{ className?: string }> = ({ className
         </div>
         {/* <div className={styles.button}>7</div>
         <div className={styles.button}>8</div> */}
-        <svg viewBox="0 0 300 300" ref={svgRef} className={styles.svg}>
+        <svg viewBox="0 0 530 530" ref={svgRef} className={styles.svg}>
           <circle
             id="holder"
             fill="none"
             stroke="#42567A"
             strokeWidth="1"
             strokeMiterlimit="1"
-            cx="151"
-            cy="151"
-            r="150"
+            cx="265"
+            cy="265"
+            r="265"
           />
         </svg>
         {/* </div> */}

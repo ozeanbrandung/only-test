@@ -3,7 +3,7 @@
 
     @media (width >= 1440px) {
         position: absolute;
-        top: 44.44%;
+        top: min(37.04vh, 400px);
         left: 50%;
         transform: translate(-50%, -50%);
     }
