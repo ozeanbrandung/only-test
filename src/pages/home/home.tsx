@@ -4,6 +4,7 @@ import { Layout, UIHeader1 } from "../../shared";
 import styles from "./home.module.scss";
 import clsx from "clsx";
 import { HeaderLine } from "./header-line";
+import data from "../../app/data.json";
 
 export const Home: React.FC = () => {
   return (
@@ -12,7 +13,7 @@ export const Home: React.FC = () => {
         <HeaderLine className={styles.line} />
         Исторические даты
       </UIHeader1>
-      <Carousel />
+      <Carousel data={data} />
     </Layout>
   );
 };

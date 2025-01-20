@@ -2,33 +2,33 @@ import React, { useState } from "react";
 import { Numbers } from "./numbers/numbers";
 import styles from "./carousel.module.scss";
 import { SwiperCarousel } from "./swiper-carousel/swiper-carousel";
-import data from "@/app/data.json";
+import { useCircularPagination } from "./circular-pagination/use-circular-pagination";
 
 export const Carousel: React.FC = () => {
-  const [{ from, to }, setState] = useState({ from: 1000, to: 2000 });
-  // const handleChange = () => {
-  //   setState((prev) => {
-  //     return {
-  //       ...prev,
-  //       from: Math.round(1000 + Math.random() * 1000),
-  //       to: Math.round(1500 + Math.random() * 524),
-  //     }
-  //   })
-  // }
+  //const {moveWheel} = useCircularPagination();
 
-  //console.log(from, to)
+  //const [activeIndex, setActiveIndex] = useState(0);
+
+  const { activeIndex, handleChangeData, data } = useCircularPagination();
+
+  // const handleChangeData = (idx: number, cb?: () => void) => {
+  //   setActiveIndex(idx);
+  //  // moveWheel && moveWheel(idx);
+  //   cb && cb();
+  // };
+
   return (
-    <>
-      <Numbers from={from} to={to} className={styles.numbers} />
-      <h2 className={styles.h2}>Литература</h2>
+    <div>
+      <Numbers from={data.from} to={data.to} className={styles.numbers} />
+      <h2 className={styles.h2}>{data.title}</h2>
       <hr className={styles.line} />
       <>
-        <SwiperCarousel data={data} />
+        <SwiperCarousel handleChangeData={handleChangeData} activeIndex={activeIndex} />
       </>
 
       {/* <button type="button" onClick={handleChange}>change</button> */}
-      <div className={styles.horizontalLine}/>
-      <div className={styles.verticalLine}/>
-    </>
+      <div className={styles.horizontalLine} />
+      <div className={styles.verticalLine} />
+    </div>
   );
 };

@@ -7,14 +7,11 @@ import styles from "./swiper-carousel.module.scss";
 import { Arrow } from "../../../shared";
 import clsx from "clsx";
 import { CircularPagination } from "../circular-pagination/circular-pagination";
+import data from "../../../app/data.json";
 
 interface IProps {
-  data: {
-    title: string;
-    from: number;
-    to: number;
-    items: { date: number; text: string }[];
-  }[];
+  handleChangeData: (idx: number, cb?: () => void) => void;
+  activeIndex: number;
   className?: string;
 }
 
@@ -27,9 +24,8 @@ function getFormattedInfo(activeIndex: number, total: number) {
   return `${first}/${second}`;
 }
 
-export const SwiperCarousel: React.FC<IProps> = ({ data, className }) => {
+export const SwiperCarousel: React.FC<IProps> = ({ handleChangeData, activeIndex, className }) => {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
   const slideRef = useRef<HTMLDivElement[] | null>([]);
   const scrollButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -51,6 +47,14 @@ export const SwiperCarousel: React.FC<IProps> = ({ data, className }) => {
     }
   }, [activeIndex]);
 
+  //console.log(activeIndex);
+
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(activeIndex);
+    }
+  }, [activeIndex]);
+
   return (
     <>
       <div className={styles.carouselWrapper}>
@@ -58,13 +62,15 @@ export const SwiperCarousel: React.FC<IProps> = ({ data, className }) => {
           className={className}
           onSwiper={(swiper: any) => {
             swiperRef.current = swiper;
-            setActiveIndex(swiper.activeIndex);
+            handleChangeData(swiper.activeIndex);
           }}
           allowTouchMove={false}
           //modules={[Navigation, Pagination]}
           onSlideChange={(swiper) => {
-            setActiveIndex(swiper.activeIndex);
+            console.log("change", swiper.activeIndex);
+            handleChangeData(swiper.activeIndex);
           }}
+          loop={true}
           // breakpoints={{
           //   640: {
           //     slidesPerView: 1
@@ -96,10 +102,10 @@ export const SwiperCarousel: React.FC<IProps> = ({ data, className }) => {
       <nav className={styles.buttons}>
         <div className={styles.info}>{getFormattedInfo(activeIndex, data.length)}</div>
 
-        <button className={styles.prevBtn} onClick={() => swiperRef.current?.slidePrev()}>
+        <button id="prev" className={styles.prevBtn} onClick={() => swiperRef.current?.slidePrev()}>
           <Arrow />
         </button>
-        <button className={styles.nextBtn} onClick={() => swiperRef.current?.slideNext()}>
+        <button id="next" className={styles.nextBtn} onClick={() => swiperRef.current?.slideNext()}>
           <Arrow className={styles.arrowRight} />
         </button>
       </nav>
@@ -114,7 +120,11 @@ export const SwiperCarousel: React.FC<IProps> = ({ data, className }) => {
         ))}
       </nav>
 
-      <CircularPagination className={styles.circularPagination} />
+      <CircularPagination
+        className={styles.circularPagination}
+        activeIndex={activeIndex}
+        data={data}
+      />
     </>
   );
 };
