@@ -42,6 +42,11 @@
         height: 50px; */
         width: min(4.63vh, 50px);
         height: min(4.63vh, 50px);
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #fff;
+        }
     }
 }
 
