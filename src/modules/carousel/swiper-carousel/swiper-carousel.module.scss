@@ -113,3 +113,15 @@
 .hidden {
     display: none;
 }
+
+.circularPagination {
+    display: none;
+
+    @media (width >= 1440px) {
+        display: block; 
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

@@ -57,6 +57,7 @@
     "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
+    "gsap": "^3.12.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "swiper": "^11.2.1"

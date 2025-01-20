@@ -6,6 +6,7 @@ import { Slide } from "../slide/slide";
 import styles from "./swiper-carousel.module.scss";
 import { Arrow } from "../../../shared";
 import clsx from "clsx";
+import { CircularPagination } from "../circular-pagination/circular-pagination";
 
 interface IProps {
   data: {
@@ -112,6 +113,8 @@ export const SwiperCarousel: React.FC<IProps> = ({ data, className }) => {
           />
         ))}
       </nav>
+
+      <CircularPagination className={styles.circularPagination} />
     </>
   );
 };
