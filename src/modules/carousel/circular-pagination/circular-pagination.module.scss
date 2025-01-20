@@ -39,7 +39,7 @@
 
     &:hover .dot {
         transform:scale(1);
-        background-color: #fff;
+        background-color: #F4F5F9;;
         border: 1px solid #303E5880;
         font-size: min(1.85vh, 20px);
         line-height: min(5.19vh, 56px);
@@ -57,7 +57,7 @@
 
     .dot {
         transform:scale(1);
-        background-color: #fff;
+        background-color: #F4F5F9;;
         border: 1px solid #303E5880;
         font-size: min(1.85vh, 20px);
     line-height: min(5.19vh, 56px);
@@ -76,4 +76,19 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+}
+
+.title {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    opacity: 0;
+    font-family: PT Sans, sans-serif;
+    font-size: min(1.85vh, 20px);
+    font-weight: 700;
+    line-height: min(30px, 2.78vh);
+}
+
+.active .title {
+    opacity: 1;
 }

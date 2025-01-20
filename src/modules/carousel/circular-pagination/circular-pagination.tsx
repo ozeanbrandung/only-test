@@ -31,6 +31,7 @@ export const CircularPagination: React.FC<IProps> = ({ activeIndex, data, classN
             //onClick={() => console.log(idx)}
           >
             <span className={styles.dot}>{idx + 1}</span>
+            <span className={styles.title}>{item.title}</span>
           </div>
         ))}
         <svg viewBox="0 0 530 530" /* ref={svgRef} */ className={styles.svg}>
