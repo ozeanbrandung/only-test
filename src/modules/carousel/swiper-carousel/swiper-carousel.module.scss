@@ -132,5 +132,6 @@
         top: min(22vh, 240px);
         left: 50%;
         transform: translate(-50%);
+        z-index: 2;
     }
 }

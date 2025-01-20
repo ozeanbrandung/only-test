@@ -27,6 +27,8 @@ export const Carousel: React.FC = () => {
       </>
 
       {/* <button type="button" onClick={handleChange}>change</button> */}
+      <div className={styles.horizontalLine}/>
+      <div className={styles.verticalLine}/>
     </>
   );
 };
