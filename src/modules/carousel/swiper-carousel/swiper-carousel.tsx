@@ -28,14 +28,45 @@ export const SwiperCarousel: React.FC<IProps> = ({ handleChangeData, activeIndex
   const swiperRef = useRef<SwiperType | null>(null);
   const slideRef = useRef<HTMLDivElement[] | null>([]);
   const scrollButtonRef = useRef<HTMLButtonElement | null>(null);
+  const scrollButtonRefLeft = useRef<HTMLButtonElement | null>(null);
 
-  function handleScrollSlide() {
+  function handleScrollSlide(direction: "left" | "right") {
+    const el = slideRef.current?.[activeIndex];
     //console.log(slideRef.current?)
-    if (slideRef.current?.[activeIndex]) {
+    if (el) {
       //console.log(slideRef.current)
-      slideRef.current[activeIndex].scrollBy({ left: 200, behavior: "smooth" });
+      if (direction === "left") {
+        el.scrollBy({ left: -200, behavior: "smooth" });
+      } else {
+        el.scrollBy({ left: 200, behavior: "smooth" });
+      }
+
+      //el.scrollBy({ left: 200, behavior: "smooth" });
+
+      // if (el.scrollWidth - el.scrollLeft - el.clientWidth < 1) {
+      //   scrollButtonRef.current?.classList.add(styles.hidden);
+      // }
     }
   }
+
+  const handleOnScroll = () => {
+    const el = slideRef.current?.[activeIndex];
+    if (el) {
+      if (el.scrollWidth - el.scrollLeft - el.clientWidth < 1) {
+        scrollButtonRef.current?.classList.add(styles.hidden);
+        //scrollButtonRefLeft.current?.classList.remove(styles.hidden);
+      } else {
+        scrollButtonRef.current?.classList.remove(styles.hidden);
+        //scrollButtonRefLeft.current?.classList.add(styles.hidden);
+      }
+
+      if (el.scrollLeft < 1) {
+        scrollButtonRefLeft.current?.classList.add(styles.hidden);
+      } else {
+        scrollButtonRefLeft.current?.classList.remove(styles.hidden);
+      }
+    }
+  };
 
   useEffect(() => {
     if (slideRef.current?.[activeIndex] && scrollButtonRef.current) {
@@ -85,14 +116,22 @@ export const SwiperCarousel: React.FC<IProps> = ({ handleChangeData, activeIndex
         >
           {data.map((dataItem) => (
             <SwiperSlide key={dataItem.title}>
-              <Slide items={dataItem.items} slideRef={slideRef} />
+              <Slide items={dataItem.items} slideRef={slideRef} handleScroll={handleOnScroll} />
             </SwiperSlide>
           ))}
         </Swiper>
 
         <button
-          className={clsx(styles.scrollButton, styles.hidden)}
-          onClick={handleScrollSlide}
+          className={clsx(styles.scrollButton, styles.scrollButtonLeft, styles.hidden)}
+          onClick={() => handleScrollSlide("left")}
+          ref={scrollButtonRefLeft}
+        >
+          <Arrow className={styles.arrowLeft} />
+        </button>
+
+        <button
+          className={clsx(styles.scrollButton, styles.scrollButtonRight, styles.hidden)}
+          onClick={() => handleScrollSlide("right")}
           ref={scrollButtonRef}
         >
           <Arrow className={styles.arrowRight} />

@@ -118,9 +118,20 @@
         box-shadow: 0 0 15px 0 #3877EE1A;
         position: absolute;
         border: none;
-        right: -50px;
         top: 50%;
         transform: translateY(-50%);
+    }
+}
+
+.scrollButtonRight {
+    @media (width >= 1440px) {
+        right: -50px;
+    }
+}
+
+.scrollButtonLeft {
+    @media (width >= 1440px) {
+        left: -50px;
     }
 }
 
