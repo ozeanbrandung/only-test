@@ -1,6 +1,5 @@
 .wrapper {
     position: relative;
-    z-index: 2;
 }
 
 .button {
@@ -9,8 +8,8 @@
     text-align: center;
     font-family: "PT Sans", sans-serif;
     border-radius: 100%;
-    z-index: 3;
     cursor: pointer;
+    z-index: 4;
 
     /* width: 56px;
     height: 56px; */
@@ -81,7 +80,7 @@
 .title {
     position: absolute;
     top: 0;
-    left: 100%;
+    left: calc(100% + 13px);
     opacity: 0;
     font-family: PT Sans, sans-serif;
     font-size: min(1.85vh, 20px);

@@ -4,7 +4,7 @@
     @media (width >= 1440px) {
         position: absolute;
         top: min(37.04vh, 400px);
-        left: 50%;
+        left: calc(50% - 14px);
         transform: translate(-50%, -50%);
     }
 
