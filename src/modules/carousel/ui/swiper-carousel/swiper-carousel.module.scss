@@ -1,0 +1,23 @@
+.carouselWrapper {
+    position: relative;
+}
+
+.swiperCarousel {
+    padding: 20px 0;
+}
+
+.slide {
+    width: 100vw;
+}
+
+.circularPagination {
+    display: none;
+
+    @media (width >= 1440px) {
+        display: block; 
+        position: absolute;
+        top: min(22vh, 240px);
+        left: 50%;
+        transform: translate(-50%);
+    }
+}

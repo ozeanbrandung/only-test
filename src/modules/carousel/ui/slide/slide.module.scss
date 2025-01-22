@@ -6,7 +6,8 @@
     gap: 25px;
 
     @media (width >= 1440px) {
-        gap: 80px;
+        /* gap: 80px; */
+        gap: min(7.41vh, 80px);
 
         &::-webkit-scrollbar {
             display: none;
@@ -21,8 +22,10 @@
     flex: 0 0 60vw;
 
     @media (width >= 1440px) {
-        width: calc((100% - 80px * 2) / 3);
-        flex: 0 0 calc((100% - 80px * 2) / 3);
+        /* width: calc((100% - 80px * 2) / 3);
+        flex: 0 0 calc((100% - 80px * 2) / 3); */
+        width: calc((100% - min(7.71vh, 80) * 2) / 3);
+        flex: 0 0 calc((100% - min(7.71vh, 80) * 2) / 3);
     }
 }
 
@@ -38,8 +41,11 @@
     margin-bottom: 15px;
 
     @media (width >= 1440px) {
-        font-size: 25px;
-        line-height: 30px;
+        /* font-size: 25px;
+        line-height: 30px; */
+        font-size: min(2.31vh, 25px);
+        line-height: min(2.78vh, 30px);
+        margin-bottom: min(1.39vh, 15px);
     }
 }
 
@@ -59,10 +65,14 @@
 
 
     @media (width >= 1440px) {
-        font-size: 20px;
-        line-height: 30px;
+        /* font-size: 20px;
+        line-height: 30px; */
         -webkit-line-clamp: 3;
-        height: 90px;
+
+        /* height: 90px; */
+        font-size: min(1.85vh, 20px);
+        line-height: min(2.77vh, 30px);
+        height: min(8.33vh, 90px);
     }
 }
 

@@ -1,6 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
-import styles from "./numbers.module.scss";
-import clsx from "clsx";
+import { useLayoutEffect, useState } from "react";
 
 function getRandomNumber(initial: number, target: number) {
   if (initial > target) {
@@ -9,14 +7,7 @@ function getRandomNumber(initial: number, target: number) {
     return Math.floor(Math.random() * (target - initial) + initial);
   }
 }
-
-export const Numbers: React.FC<{ from: number; to: number; className?: string }> = ({
-  from,
-  to,
-  className,
-}) => {
-  //console.log(from, to)
-
+export const useAnimateNumbers = (from: number, to: number) => {
   const [state, setState] = useState({ from, to });
 
   useLayoutEffect(() => {
@@ -42,10 +33,5 @@ export const Numbers: React.FC<{ from: number; to: number; className?: string }>
     }
   }, [from, to]);
 
-  return (
-    <div className={clsx(styles.numbers, className)}>
-      <span className={styles.from}>{state.from}</span>
-      <span className={styles.to}>{state.to}</span>
-    </div>
-  );
+  return state;
 };
