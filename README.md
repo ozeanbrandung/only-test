@@ -8,3 +8,4 @@
 - fix typescript issues
 - config webpack to work with absolute imports
 - refactor use-circular-pagination to not use styles from circular-pagination ui (!!!)
+- mobile slide appearance animation 

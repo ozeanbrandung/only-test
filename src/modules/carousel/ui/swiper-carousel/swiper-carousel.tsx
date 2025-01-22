@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import { Slide } from "../slide/slide";
 //import { Navigation, Pagination } from "swiper/modules";
 import styles from "./swiper-carousel.module.scss";
 import { Arrow } from "../../../../shared";
-import clsx from "clsx";
 import { CircularPagination } from "../circular-pagination/circular-pagination";
 import data from "../../../../app/data.json";
-import { SlideScrollButtons } from "../slide-scroll-buttons/slide-scroll-buttons";
+import { SlideScrollButtons } from "../slide-scroll-buttons";
+import { MobileCarouselPagination } from "../mobile-carousel-pagination";
 
 interface IProps {
   handleChangeData: (idx: number, cb?: () => void) => void;
@@ -115,15 +115,7 @@ export const SwiperCarousel: React.FC<IProps> = ({
         </button>
       </nav>
 
-      <nav className={styles.pagination}>
-        {data.map((dataItem, index) => (
-          <span
-            key={dataItem.title}
-            className={clsx(styles.bullet, { [styles.bulletActive]: index === activeIndex })}
-            onClick={() => swiperRef.current?.slideTo(index)}
-          />
-        ))}
-      </nav>
+      <MobileCarouselPagination data={data} swiperRef={swiperRef} activeIndex={activeIndex} />
 
       <CircularPagination
         className={styles.circularPagination}
