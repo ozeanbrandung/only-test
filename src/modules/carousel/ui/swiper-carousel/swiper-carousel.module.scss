@@ -113,49 +113,6 @@
     }
 }
 
-.scrollButton {
-    display: none;
-
-    @media (width >= 1440px) {
-        display: block;
-
-        /* width: 40px;
-        height: 40px; */
-        width: min(3.7vh, 40px);
-        height: min(3.7vh, 40px);
-        cursor: pointer;
-        background-color: #fff;
-        border-radius: 50%;
-        box-shadow: 0 0 15px 0 #3877EE1A;
-        position: absolute;
-        border: none;
-        top: 50%;
-        transform: translateY(-50%);
-
-        svg {
-            width: 8px;
-            flex: 0 0 8px;
-            //height: 12px;
-        }
-    }
-}
-
-.scrollButtonRight {
-    @media (width >= 1440px) {
-        right: -50px;
-    }
-}
-
-.scrollButtonLeft {
-    @media (width >= 1440px) {
-        left: -50px;
-    }
-}
-
-.hidden {
-    display: none;
-}
-
 .circularPagination {
     display: none;
 

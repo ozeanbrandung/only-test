@@ -8,6 +8,7 @@ import { Arrow } from "../../../../shared";
 import clsx from "clsx";
 import { CircularPagination } from "../circular-pagination/circular-pagination";
 import data from "../../../../app/data.json";
+import { SlideScrollButtons } from "../slide-scroll-buttons/slide-scroll-buttons";
 
 interface IProps {
   handleChangeData: (idx: number, cb?: () => void) => void;
@@ -41,52 +42,17 @@ export const SwiperCarousel: React.FC<IProps> = ({
 }) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const slideRef = useRef<HTMLDivElement[] | null>([]);
-  const scrollButtonRef = useRef<HTMLButtonElement | null>(null);
-  const scrollButtonRefLeft = useRef<HTMLButtonElement | null>(null);
-
-  function handleScrollSlide(direction: "left" | "right") {
-    const el = slideRef.current?.[activeIndex];
-    if (el) {
-      if (direction === "left") {
-        el.scrollBy({ left: -200, behavior: "smooth" });
-      } else {
-        el.scrollBy({ left: 200, behavior: "smooth" });
-      }
-    }
-  }
-
-  const handleOnScroll = () => {
-    const el = slideRef.current?.[activeIndex];
-    if (el) {
-      if (el.scrollWidth - el.scrollLeft - el.clientWidth < 1) {
-        scrollButtonRef.current?.classList.add(styles.hidden);
-      } else {
-        scrollButtonRef.current?.classList.remove(styles.hidden);
-      }
-
-      if (el.scrollLeft < 1) {
-        scrollButtonRefLeft.current?.classList.add(styles.hidden);
-      } else {
-        scrollButtonRefLeft.current?.classList.remove(styles.hidden);
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (slideRef.current?.[activeIndex] && scrollButtonRef.current) {
-      if (slideRef.current[activeIndex].scrollWidth > slideRef.current[activeIndex].clientWidth) {
-        scrollButtonRef.current.classList.remove(styles.hidden);
-      } else {
-        scrollButtonRef.current.classList.add(styles.hidden);
-      }
-    }
-  }, [activeIndex]);
+  const handleButtonsVisibilityOnScrollFnRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     if (swiperRef.current) {
       swiperRef.current.slideTo(activeIndex);
     }
   }, [activeIndex]);
+
+  function onScrollSlide() {
+    handleButtonsVisibilityOnScrollFnRef.current && handleButtonsVisibilityOnScrollFnRef.current();
+  }
 
   return (
     <>
@@ -118,26 +84,16 @@ export const SwiperCarousel: React.FC<IProps> = ({
         >
           {data.map((dataItem) => (
             <SwiperSlide key={dataItem.title}>
-              <Slide items={dataItem.items} slideRef={slideRef} handleScroll={handleOnScroll} />
+              <Slide items={dataItem.items} slideRef={slideRef} handleScroll={onScrollSlide} />
             </SwiperSlide>
           ))}
         </Swiper>
 
-        <button
-          className={clsx(styles.scrollButton, styles.scrollButtonLeft, styles.hidden)}
-          onClick={() => handleScrollSlide("left")}
-          ref={scrollButtonRefLeft}
-        >
-          <Arrow className={styles.arrowLeft} />
-        </button>
-
-        <button
-          className={clsx(styles.scrollButton, styles.scrollButtonRight, styles.hidden)}
-          onClick={() => handleScrollSlide("right")}
-          ref={scrollButtonRef}
-        >
-          <Arrow className={styles.arrowRight} />
-        </button>
+        <SlideScrollButtons
+          slideRef={slideRef}
+          activeIndex={activeIndex}
+          handleButtonsVisibilityOnScrollFnRef={handleButtonsVisibilityOnScrollFnRef}
+        />
       </div>
 
       <nav className={styles.buttons}>
