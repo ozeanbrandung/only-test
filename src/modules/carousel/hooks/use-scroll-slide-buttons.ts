@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 //TODO: remove from here!
-import styles from "./slide-scroll-buttons.module.scss";
+import styles from "../ui/slide-scroll-buttons/slide-scroll-buttons.module.scss";
 
 export const useScrollSlideButtons = (
   activeIndex: number,
