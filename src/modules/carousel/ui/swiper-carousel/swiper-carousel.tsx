@@ -16,6 +16,8 @@ interface IProps {
   circleRef: React.RefObject<SVGSVGElement>;
   buttonsRef: React.RefObject<HTMLDivElement[]>;
   wrapperRef: React.RefObject<HTMLDivElement>;
+  buttonRight: React.RefObject<HTMLButtonElement>;
+  buttonLeft: React.RefObject<HTMLButtonElement>;
 }
 
 function getFormattedInfo(activeIndex: number, total: number) {
@@ -34,6 +36,8 @@ export const SwiperCarousel: React.FC<IProps> = ({
   circleRef,
   wrapperRef,
   className,
+  buttonLeft,
+  buttonRight,
 }) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const slideRef = useRef<HTMLDivElement[] | null>([]);
@@ -42,20 +46,12 @@ export const SwiperCarousel: React.FC<IProps> = ({
 
   function handleScrollSlide(direction: "left" | "right") {
     const el = slideRef.current?.[activeIndex];
-    //console.log(slideRef.current?)
     if (el) {
-      //console.log(slideRef.current)
       if (direction === "left") {
         el.scrollBy({ left: -200, behavior: "smooth" });
       } else {
         el.scrollBy({ left: 200, behavior: "smooth" });
       }
-
-      //el.scrollBy({ left: 200, behavior: "smooth" });
-
-      // if (el.scrollWidth - el.scrollLeft - el.clientWidth < 1) {
-      //   scrollButtonRef.current?.classList.add(styles.hidden);
-      // }
     }
   }
 
@@ -64,10 +60,8 @@ export const SwiperCarousel: React.FC<IProps> = ({
     if (el) {
       if (el.scrollWidth - el.scrollLeft - el.clientWidth < 1) {
         scrollButtonRef.current?.classList.add(styles.hidden);
-        //scrollButtonRefLeft.current?.classList.remove(styles.hidden);
       } else {
         scrollButtonRef.current?.classList.remove(styles.hidden);
-        //scrollButtonRefLeft.current?.classList.add(styles.hidden);
       }
 
       if (el.scrollLeft < 1) {
@@ -87,8 +81,6 @@ export const SwiperCarousel: React.FC<IProps> = ({
       }
     }
   }, [activeIndex]);
-
-  //console.log(activeIndex);
 
   useEffect(() => {
     if (swiperRef.current) {
@@ -151,10 +143,18 @@ export const SwiperCarousel: React.FC<IProps> = ({
       <nav className={styles.buttons}>
         <div className={styles.info}>{getFormattedInfo(activeIndex, data.length)}</div>
 
-        <button id="prev" className={styles.prevBtn} onClick={() => swiperRef.current?.slidePrev()}>
+        <button
+          ref={buttonLeft}
+          className={styles.prevBtn}
+          onClick={() => swiperRef.current?.slidePrev()}
+        >
           <Arrow />
         </button>
-        <button id="next" className={styles.nextBtn} onClick={() => swiperRef.current?.slideNext()}>
+        <button
+          ref={buttonRight}
+          className={styles.nextBtn}
+          onClick={() => swiperRef.current?.slideNext()}
+        >
           <Arrow className={styles.arrowRight} />
         </button>
       </nav>

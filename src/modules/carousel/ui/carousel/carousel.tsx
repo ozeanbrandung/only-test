@@ -6,8 +6,16 @@ import { Header } from "../header";
 import styles from "./carousel.module.scss";
 
 export const Carousel: React.FC = () => {
-  const { activeIndex, handleChangeData, data, circleRef, buttonsRef, wrapperRef } =
-    useCircularPagination();
+  const {
+    activeIndex,
+    handleChangeData,
+    data,
+    circleRef,
+    buttonsRef,
+    wrapperRef,
+    buttonLeft,
+    buttonRight,
+  } = useCircularPagination();
 
   return (
     <div className={styles.carousel}>
@@ -28,6 +36,8 @@ export const Carousel: React.FC = () => {
           circleRef={circleRef}
           buttonsRef={buttonsRef}
           wrapperRef={wrapperRef}
+          buttonLeft={buttonLeft}
+          buttonRight={buttonRight}
         />
       </div>
     </div>

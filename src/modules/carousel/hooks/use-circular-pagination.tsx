@@ -1,3 +1,4 @@
+//TODO: refactor to remove this styles from here
 import styles from "../ui/circular-pagination/circular-pagination.module.scss";
 import gsap from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
@@ -6,9 +7,12 @@ import { useEffect, useRef, useState } from "react";
 gsap.registerPlugin(MotionPathPlugin);
 
 export const useCircularPagination = () => {
+  //TODO: refactor code and return circular pagination component from hook to not send ref props
   const circleRef = useRef<SVGSVGElement>(null);
   const buttonsRef = useRef<HTMLDivElement[]>([]);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const buttonLeft = useRef<HTMLButtonElement>(null);
+  const buttonRight = useRef<HTMLButtonElement>(null);
 
   const [active, setActive] = useState({
     index: 0,
@@ -107,11 +111,11 @@ export const useCircularPagination = () => {
       });
     });
 
-    document.getElementById("next").addEventListener("click", function () {
+    buttonRight.current?.addEventListener("click", function () {
       return moveWheel(-itemStep);
     });
 
-    document.getElementById("prev").addEventListener("click", function () {
+    buttonLeft.current?.addEventListener("click", function () {
       return moveWheel(itemStep);
     });
 
@@ -165,5 +169,7 @@ export const useCircularPagination = () => {
     circleRef,
     buttonsRef,
     wrapperRef,
+    buttonLeft,
+    buttonRight,
   };
 };
