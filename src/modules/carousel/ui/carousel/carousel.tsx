@@ -4,6 +4,7 @@ import { Numbers } from "../numbers";
 import { SwiperCarousel } from "../swiper-carousel";
 import { Header } from "../header";
 import styles from "./carousel.module.scss";
+import dataJSON from "../../../../app/data.json";
 
 export const Carousel: React.FC = () => {
   const {
@@ -38,6 +39,7 @@ export const Carousel: React.FC = () => {
           wrapperRef={wrapperRef}
           buttonLeft={buttonLeft}
           buttonRight={buttonRight}
+          data={dataJSON}
         />
       </div>
     </div>

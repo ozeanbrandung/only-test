@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
-import { Slide } from "../slide/slide";
+import { Slide } from "../slide";
 //import { Navigation, Pagination } from "swiper/modules";
-import styles from "./swiper-carousel.module.scss";
-import { Arrow } from "../../../../shared";
-import { CircularPagination } from "../circular-pagination/circular-pagination";
-import data from "../../../../app/data.json";
+import { CircularPagination } from "../circular-pagination";
 import { SlideScrollButtons } from "../slide-scroll-buttons";
 import { MobileCarouselPagination } from "../mobile-carousel-pagination";
+import { IDataItem } from "modules/carousel/types/types";
+import styles from "./swiper-carousel.module.scss";
+import { CarouselNavigationButtons } from "../carousel/carousel-navigation-buttons";
 
 interface IProps {
   handleChangeData: (idx: number, cb?: () => void) => void;
@@ -19,15 +19,7 @@ interface IProps {
   wrapperRef: React.RefObject<HTMLDivElement>;
   buttonRight: React.RefObject<HTMLButtonElement>;
   buttonLeft: React.RefObject<HTMLButtonElement>;
-}
-
-function getFormattedInfo(activeIndex: number, total: number) {
-  const first = (activeIndex + 1).toLocaleString("en-US", {
-    minimumIntegerDigits: 2,
-    useGrouping: false,
-  });
-  const second = total.toLocaleString("en-US", { minimumIntegerDigits: 2, useGrouping: false });
-  return `${first}/${second}`;
+  data: IDataItem[];
 }
 
 export const SwiperCarousel: React.FC<IProps> = ({
@@ -39,6 +31,7 @@ export const SwiperCarousel: React.FC<IProps> = ({
   className,
   buttonLeft,
   buttonRight,
+  data,
 }) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const slideRef = useRef<HTMLDivElement[] | null>([]);
@@ -96,24 +89,13 @@ export const SwiperCarousel: React.FC<IProps> = ({
         />
       </div>
 
-      <nav className={styles.buttons}>
-        <div className={styles.info}>{getFormattedInfo(activeIndex, data.length)}</div>
-
-        <button
-          ref={buttonLeft}
-          className={styles.prevBtn}
-          onClick={() => swiperRef.current?.slidePrev()}
-        >
-          <Arrow />
-        </button>
-        <button
-          ref={buttonRight}
-          className={styles.nextBtn}
-          onClick={() => swiperRef.current?.slideNext()}
-        >
-          <Arrow className={styles.arrowRight} />
-        </button>
-      </nav>
+      <CarouselNavigationButtons
+        activeIndex={activeIndex}
+        data={data}
+        buttonLeft={buttonLeft}
+        buttonRight={buttonRight}
+        swiperRef={swiperRef}
+      />
 
       <MobileCarouselPagination data={data} swiperRef={swiperRef} activeIndex={activeIndex} />
 
