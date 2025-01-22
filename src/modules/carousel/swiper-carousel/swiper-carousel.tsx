@@ -13,6 +13,9 @@ interface IProps {
   handleChangeData: (idx: number, cb?: () => void) => void;
   activeIndex: number;
   className?: string;
+  circleRef: React.RefObject<SVGSVGElement>;
+  buttonsRef: React.RefObject<HTMLDivElement[]>;
+  wrapperRef: React.RefObject<HTMLDivElement>;
 }
 
 function getFormattedInfo(activeIndex: number, total: number) {
@@ -24,7 +27,14 @@ function getFormattedInfo(activeIndex: number, total: number) {
   return `${first}/${second}`;
 }
 
-export const SwiperCarousel: React.FC<IProps> = ({ handleChangeData, activeIndex, className }) => {
+export const SwiperCarousel: React.FC<IProps> = ({
+  handleChangeData,
+  activeIndex,
+  buttonsRef,
+  circleRef,
+  wrapperRef,
+  className,
+}) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const slideRef = useRef<HTMLDivElement[] | null>([]);
   const scrollButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -163,6 +173,9 @@ export const SwiperCarousel: React.FC<IProps> = ({ handleChangeData, activeIndex
         className={styles.circularPagination}
         activeIndex={activeIndex}
         data={data}
+        buttonsRef={buttonsRef}
+        circleRef={circleRef}
+        wrapperRef={wrapperRef}
       />
     </>
   );

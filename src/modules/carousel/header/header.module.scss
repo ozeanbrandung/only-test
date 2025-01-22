@@ -1,0 +1,26 @@
+.h1 {
+    margin: 0 0 56px;
+    max-width: 30%;
+
+    @media (width >= 1440px) {
+        margin: 0;
+        max-width: 30%;
+        position: relative;
+    }
+}
+
+.line {
+    display: none;
+
+    @media (width >= 1440px) {
+        display: block;
+        position: absolute;
+        left: -80px;
+        top: 10px;
+        transform: translateX(-50%);
+        width: 6px;
+
+        background: linear-gradient(180deg, #3877EE 0%, #EF5DA8 100%);
+        height: min(11.11vh, 120px);
+    }
+}

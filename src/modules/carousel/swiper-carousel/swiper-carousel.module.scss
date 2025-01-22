@@ -47,6 +47,12 @@
         &:hover {
             background-color: #fff;
         }
+
+        svg {
+            width: 8px;
+            flex: 0 0 8px;
+            //height: 12px;
+        }
     }
 }
 
@@ -120,6 +126,12 @@
         border: none;
         top: 50%;
         transform: translateY(-50%);
+
+        svg {
+            width: 8px;
+            flex: 0 0 8px;
+            //height: 12px;
+        }
     }
 }
 
@@ -148,6 +160,5 @@
         top: min(22vh, 240px);
         left: 50%;
         transform: translate(-50%);
-        z-index: 4;
     }
 }
