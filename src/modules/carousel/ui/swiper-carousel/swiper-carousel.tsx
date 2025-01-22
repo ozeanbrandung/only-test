@@ -4,10 +4,10 @@ import { Swiper as SwiperType } from "swiper";
 import { Slide } from "../slide/slide";
 //import { Navigation, Pagination } from "swiper/modules";
 import styles from "./swiper-carousel.module.scss";
-import { Arrow } from "../../../shared";
+import { Arrow } from "../../../../shared";
 import clsx from "clsx";
 import { CircularPagination } from "../circular-pagination/circular-pagination";
-import data from "../../../app/data.json";
+import data from "../../../../app/data.json";
 
 interface IProps {
   handleChangeData: (idx: number, cb?: () => void) => void;

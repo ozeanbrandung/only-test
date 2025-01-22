@@ -1,9 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import styles from "./circular-pagination.module.scss";
+import React from "react";
 import clsx from "clsx";
-// import gsap from "gsap";
-// import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-// gsap.registerPlugin(MotionPathPlugin);
+import styles from "./circular-pagination.module.scss";
 
 interface IProps {
   data: {
@@ -20,25 +17,19 @@ interface IProps {
 }
 
 export const CircularPagination: React.FC<IProps> = ({
-  activeIndex,
   data,
   circleRef,
   buttonsRef,
   wrapperRef,
   className,
 }) => {
-  //const svgRef = useRef<SVGSVGElement>(null);
-
   return (
     <nav className={clsx(styles.circularPagination, className)}>
-      {/* <div className="container"> */}
       <div className={styles.wrapper} ref={wrapperRef}>
         {data.map((item, idx) => (
           <div
             key={item.title}
             className={styles.button}
-            // className={clsx(styles.button, {[styles.active]: activeIndex === idx})}
-            //onClick={() => console.log(idx)}
             ref={(node) => {
               if (node && !buttonsRef.current.includes(node)) {
                 buttonsRef.current.push(node);
@@ -49,7 +40,7 @@ export const CircularPagination: React.FC<IProps> = ({
             <span className={styles.title}>{item.title}</span>
           </div>
         ))}
-        <svg viewBox="0 0 530 530" /* ref={svgRef} */ className={styles.svg} ref={circleRef}>
+        <svg viewBox="0 0 530 530" className={styles.svg} ref={circleRef}>
           <circle
             id="holder"
             fill="none"
@@ -61,7 +52,6 @@ export const CircularPagination: React.FC<IProps> = ({
             r="265"
           />
         </svg>
-        {/* </div> */}
       </div>
     </nav>
   );

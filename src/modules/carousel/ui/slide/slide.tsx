@@ -1,4 +1,4 @@
-import React, { Ref, RefObject } from "react";
+import React, { RefObject } from "react";
 import styles from "./slide.module.scss";
 import clsx from "clsx";
 

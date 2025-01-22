@@ -1,8 +1,8 @@
-import styles from "./circular-pagination.module.scss";
+import styles from "../ui/circular-pagination/circular-pagination.module.scss";
 import gsap from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import data from "../../../app/data.json";
-import { act, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 gsap.registerPlugin(MotionPathPlugin);
 
 export const useCircularPagination = () => {
@@ -77,11 +77,6 @@ export const useCircularPagination = () => {
     items.forEach(function (el, i) {
       el?.addEventListener("click", function (e) {
         const target = e.target as HTMLSpanElement;
-        console.log(target.textContent);
-        // setActive({
-        //   index: Number(target.textContent) - 1,
-        //   data: data[Number(target.textContent) - 1]
-        // });
         var current = tracker.item,
           activeItem = i;
 
@@ -124,7 +119,6 @@ export const useCircularPagination = () => {
       let progress = tl.progress();
       tl.progress(wrapProgress(snap(tl.progress() + amount)));
       let next = tracker.item;
-      //console.log(tracker.item);
       tl.progress(progress);
 
       const activeElem = buttonsRef.current?.find((item) =>
@@ -151,22 +145,17 @@ export const useCircularPagination = () => {
   useEffect(() => {
     console.log(circleRef.current, buttonsRef.current);
     if (circleRef.current && buttonsRef.current && wrapperRef.current) animateCircle();
-    //animateCircle();
     window.addEventListener("resize", animateCircle);
     return () => {
       window.removeEventListener("resize", animateCircle);
     };
   }, []);
 
-  //   return {
-  //     moveWheel: moveWheelRef.current
-  //   }
   const handleChangeData = (idx: number, cb?: () => void) => {
     setActive({
       index: idx,
       data: data[idx],
     });
-    // moveWheel && moveWheel(idx);
     cb && cb();
   };
   return {

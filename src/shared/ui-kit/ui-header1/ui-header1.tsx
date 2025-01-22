@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./ui-header1.module.scss";
 import clsx from "clsx";
+import styles from "./ui-header1.module.scss";
 
 export const UIHeader1: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
