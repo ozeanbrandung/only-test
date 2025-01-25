@@ -1,6 +1,8 @@
 import React, { RefObject } from "react";
-import styles from "./slide.module.scss";
+
 import clsx from "clsx";
+
+import styles from "./slide.module.scss";
 
 interface IProps {
   items: { date: number; text: string }[];

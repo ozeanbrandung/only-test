@@ -1,10 +1,13 @@
 import React from "react";
-import { useCircularPagination } from "../../hooks/use-circular-pagination";
-import { Numbers } from "../numbers";
-import { SwiperCarousel } from "../swiper-carousel";
-import { Header } from "../header";
+
+import { useCircularPagination } from "@/modules/carousel/hooks/use-circular-pagination";
+import { Header } from "@/modules/carousel/ui/header";
+import { Numbers } from "@/modules/carousel/ui/numbers";
+import { SwiperCarousel } from "@/modules/carousel/ui/swiper-carousel";
+
+import dataJSON from "@/app/data.json";
+
 import styles from "./carousel.module.scss";
-import dataJSON from "../../../../app/data.json";
 
 export const Carousel: React.FC = () => {
   const {

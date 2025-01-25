@@ -7,13 +7,8 @@
     line-height: 72.46px;
     letter-spacing: -0.02em;
     text-align: left;
-
-    /* text-underline-position: from-font;
-    text-decoration-skip-ink: none; */
+    
     @media (width >= 1440px) {
-        /* width: 937px;
-        font-size: 200px;
-        line-height: 160px; */
         width: min(86.11vh, 937px);
         font-size: min(18.52vh, 200px);
         line-height: min(14.81vh, 160px);

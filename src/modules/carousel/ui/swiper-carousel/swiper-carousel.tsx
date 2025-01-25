@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import { IDataItem } from "@/modules/carousel/types/types";
 import { Swiper as SwiperType } from "swiper";
-import { Slide } from "../slide";
-//import { Navigation, Pagination } from "swiper/modules";
-import { CircularPagination } from "../circular-pagination";
-import { SlideScrollButtons } from "../slide-scroll-buttons";
-import { MobileCarouselPagination } from "../mobile-carousel-pagination";
-import { IDataItem } from "modules/carousel/types/types";
-import styles from "./swiper-carousel.module.scss";
+
 import { CarouselNavigationButtons } from "../carousel/carousel-navigation-buttons";
+import { CircularPagination } from "../circular-pagination";
+import { MobileCarouselPagination } from "../mobile-carousel-pagination";
+import { Slide } from "../slide";
+import { SlideScrollButtons } from "../slide-scroll-buttons";
+import styles from "./swiper-carousel.module.scss";
 
 interface IProps {
   handleChangeData: (idx: number, cb?: () => void) => void;
@@ -59,7 +60,6 @@ export const SwiperCarousel: React.FC<IProps> = ({
           allowTouchMove={false}
           //modules={[Navigation, Pagination]}
           onSlideChange={(swiper) => {
-            console.log("change", swiper.activeIndex);
             handleChangeData(swiper.activeIndex);
           }}
           loop={true}

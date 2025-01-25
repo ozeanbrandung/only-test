@@ -1,9 +1,12 @@
 //TODO: refactor to remove this styles from here
-import styles from "../ui/circular-pagination/circular-pagination.module.scss";
+import { useEffect, useRef, useState } from "react";
+
 import gsap from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
 import data from "../../../app/data.json";
-import { useEffect, useRef, useState } from "react";
+import styles from "../ui/circular-pagination/circular-pagination.module.scss";
+
 gsap.registerPlugin(MotionPathPlugin);
 
 export const useCircularPagination = () => {
@@ -131,7 +134,6 @@ export const useCircularPagination = () => {
       activeElem?.classList.remove(`${styles.active}`);
       items[next].classList.add(`${styles.active}`);
 
-      console.log(next, "next");
       setActive({
         index: next,
         data: data[next],
@@ -147,7 +149,6 @@ export const useCircularPagination = () => {
   }
 
   useEffect(() => {
-    console.log(circleRef.current, buttonsRef.current);
     if (circleRef.current && buttonsRef.current && wrapperRef.current) animateCircle();
     window.addEventListener("resize", animateCircle);
     return () => {

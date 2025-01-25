@@ -1,9 +1,11 @@
 import React from "react";
-import styles from "./carousel-navigation-buttons.module.scss";
+
+import { IDataItem } from "@/modules/carousel/types/types";
+import { Arrow } from "@/shared";
 import clsx from "clsx";
 import { Swiper as SwiperType } from "swiper";
-import { IDataItem } from "modules/carousel/types/types";
-import { Arrow } from "../../../../../shared";
+
+import styles from "./carousel-navigation-buttons.module.scss";
 
 function getFormattedInfo(activeIndex: number, total: number) {
   const first = (activeIndex + 1).toLocaleString("en-US", {

@@ -6,9 +6,6 @@
 
 
     @media (width >= 1440px) {
-        /* top: calc(-56px - 25px);  */
-
-        /* bottom: 270px */
         bottom: min(25vh, 270px);
     }
 }
@@ -31,8 +28,6 @@
     }
 
     @media (width >= 1440px) {
-        /* width: 50px;
-        height: 50px; */
         width: min(4.63vh, 50px);
         height: min(4.63vh, 50px);
         transition: background-color 0.3s ease;
@@ -44,7 +39,6 @@
         svg {
             width: 8px;
             flex: 0 0 8px;
-            //height: 12px;
         }
     }
 }
@@ -62,12 +56,7 @@
     font-weight: 400;
     line-height: 18.12px;
 
-    /* text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none; */
-
     @media (width >= 1440px) {
-        /* top: -20px; */
         top: max(-1.85vh, -20px);
     }
 }

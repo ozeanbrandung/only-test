@@ -1,8 +1,10 @@
 import React from "react";
+
+import { useScrollSlideButtons } from "@/modules/carousel/hooks/use-scroll-slide-buttons";
+import { Arrow } from "@/shared";
 import clsx from "clsx";
+
 import styles from "./slide-scroll-buttons.module.scss";
-import { Arrow } from "../../../../shared";
-import { useScrollSlideButtons } from "../../hooks/use-scroll-slide-buttons";
 
 interface IProps {
   leftButtonClassName?: string;

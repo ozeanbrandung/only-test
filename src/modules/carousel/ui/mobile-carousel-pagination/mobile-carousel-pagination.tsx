@@ -1,8 +1,10 @@
 import React from "react";
-import styles from "./mobile-carousel-pagination.module.scss";
+
+import { IDataItem } from "@/modules/carousel/types/types";
 import clsx from "clsx";
-import { IDataItem } from "modules/carousel/types/types";
 import { Swiper as SwiperType } from "swiper";
+
+import styles from "./mobile-carousel-pagination.module.scss";
 
 interface IProps {
   className?: string;

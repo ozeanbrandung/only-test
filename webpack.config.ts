@@ -1,11 +1,12 @@
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
-const __dirname = dirname(fileURLToPath(import.meta.url));
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 import { Configuration as WebpackConfiguration } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
@@ -91,7 +92,7 @@ const config: Configuration = {
   },
   plugins,
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
     alias: {
       "@": path.resolve(__dirname, "src/"),
     },

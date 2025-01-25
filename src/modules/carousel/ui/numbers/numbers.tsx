@@ -1,6 +1,8 @@
 import React from "react";
+
+import { useAnimateNumbers } from "@/modules/carousel/hooks/use-animate-numbers";
 import clsx from "clsx";
-import { useAnimateNumbers } from "../../hooks/useAnimateNumbers";
+
 import styles from "./numbers.module.scss";
 
 export const Numbers: React.FC<{ from: number; to: number; className?: string }> = ({
